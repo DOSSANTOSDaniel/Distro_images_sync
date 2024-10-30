@@ -1,7 +1,7 @@
 # Distro_images_sync
-Téléchargement et mise à jour automatiques d'images systèmes.
+Ce script permet de télécharger diférentes distributions Linux/Unix ou autre image système automatiquement en tentant de façon générique d'avoir toujours la dernière version de l'image.
+Le script a été pensé pour être exècuté périodiquement via une tâche Cron ou une unitéde service systemd, ainsi nous pouvont avoir les dernières versions des principales images système Linux et autre en local.
 
-## Description
 Script non interactif, permettant:
 
 - Télécharger des images systèmes via http et torrent.
@@ -10,6 +10,51 @@ Script non interactif, permettant:
 - Supprime les anciennes versions, garde toujours la version là plus à jour.
 - Journalisation des erreurs.
 - Historique des téléchargements et des suppressions de fichiers.
+
+## Liste des distributions Linux/Unix et autre configurées
+Rocky Linux
+Alma Linux
+Fedora
+FreeBSD
+Ubuntu/Ubuntu Server
+OpenSUSE
+Proxmox
+LinuxMint
+Debian
+ArchLinux
+Kali Linux
+Alpine
+Netboot.xyz
+AntiX
+DR parted live
+HBCD PE
+Ikki Boot
+Ploplinux
+Redorescue
+SyslinuxOS
+Systemrescuecd
+Tails
+Ipfire
+Opnsense
+Q4OS
+Medicat
+
+## Types d'images systèmes compatibles
+iso
+img
+dmg
+vmdk
+vhd
+vhdx
+qcow
+qcow2
+wim
+ova
+ovf
+tar
+bz2
+lzma
+7z
 
 ## Méthode de récupération des images systèmes
 
