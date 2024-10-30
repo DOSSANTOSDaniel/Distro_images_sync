@@ -378,25 +378,3 @@ if [ -n "$(find "$images_dir" -mindepth 1 -print -quit)" ]; then
 else
   message_log "Le dossier $images_dir est vide !"
 fi
-
-# Notifications avec NTFY
-# Récupération des informations log
-log_infos="$(cat "$log_file")"
-
-secrets='/home/daniel/.secrets/daniel.gpg'
-passphrase="$(/home/daniel/Scripts/Passphrase/get_passphrase.sh)"
-
-temp_token="$(gpg --batch --yes --passphrase "$passphrase" --decrypt "$secrets" | grep -oP '(?<=token_ntfy:)\w+')"
-tortue_topic="$(gpg --batch --yes --passphrase "$passphrase" --decrypt "$secrets" | grep -oP '(?<=topic_ntfy:)\w+')"
-
-curl "https://noti.dsjdf.fr/$tortue_topic" \
-  -H "Authorization: Bearer $temp_token" \
-  -H "Title: Download isos" \
-  -H "Priority: default" \
-  -H "Tags: cd" \
-  -H "Icon: https://icons.iconarchive.com/icons/delacro/fip/128/File-iso-icon.png" \
-  -d "
-==========================
-$log_infos
-==========================
-"
