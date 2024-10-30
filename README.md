@@ -75,6 +75,7 @@ Voici deux exemples utilisés dans ce script.
   ```
   
   Dans cet exemple la variable rocky_ver récupère la version la plus à jour de la distribution Rocky Linux.
+  
   La variable rocky_url récupère l'URL de téléchargement complète.
 
 * Exemple 2
@@ -87,11 +88,9 @@ Voici deux exemples utilisés dans ce script.
   
   La variable antix_ver récupère l’URL définitive de la dernière version d'AntiX, en suivant les redirections de SourceForge.
 - L'option `-w '%{url_effective}'`, permet la récupération de l'URL après redirection.
-
 - La variable `${antix_ver%%\?*}` supprime les arguments de requête HTTP qui suivent l'URL.
 
 ## Dépendances logiciel
-
 | Outil  | Description                                                                                                               |
 | ------ | ------------------------------------------------------------------------------------------------------------------------- |
 | wget   | Permet le téléchargement des fichiers via HTTP, HTTPS, et FTP.                                                            |
@@ -100,7 +99,6 @@ Voici deux exemples utilisés dans ce script.
 | aria2c | Gestionnaire de téléchargement, supportant HTTP, FTP, SFTP, et BitTorrent, permet de télécharger le fichiers via torrent. |
 
 ## Historique et journalisation des actions
-
 Le fichier `.distro_images_sync.log` qui se trouve dans le dossier de téléchargement des images systèmes(/home/$USER/ImagesSys), permet de garder une vue d'ensemble sur l'activité du script(Erreurs et historique de téléchargements).
 
 ## Reste à faire
