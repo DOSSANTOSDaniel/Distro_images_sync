@@ -5,8 +5,8 @@
 #
 # Author:  'dossantosjdf@gmail.com'
 #
-# Date: 29/10/2024
-# Version: 3.0
+# Date: 30/10/2024
+# Version: 3
 # Bash_Version: 5.1.16
 #--------------------------------------------------#
 # Description:
@@ -210,7 +210,7 @@ if [ ! -d "$images_dir" ]; then
     mkdir -p "$images_dir"
 fi
 
-# Bannière fichier log
+# Bannière pour le fichier de journalisation
 message_log '---------'
 message_log '-----------'
 message_log "-------------- Récupération images systèmes : $log_date -------"
@@ -254,7 +254,7 @@ for distro in "${!distros[@]}"; do
         # --retry-wait : Attente en secondes entre chaque nouvelle tentative.
         # --max-download-limit : Limite la vitesse de téléchargement.
         # --check-integrity : Vérifie l'intégrité du fichier, s'il existe déjà, aria2 ne le télécharge pas.
-		# --save-session : Sauvegarde la session actuelle utile pour reprendre plus tard si besoin.
+	# --save-session : Sauvegarde la session actuelle, permet de reprendre un téléchargement interrompu.
         aria2c --dir="$images_dir" \
           --continue=true \
           --seed-time=0 \
@@ -262,7 +262,7 @@ for distro in "${!distros[@]}"; do
           --retry-wait="$aria_retry_wait" \
           --max-download-limit="$aria_max_download_limit" \
           --check-integrity=true \
-		  --save-session="$images_dir/.aria_session" \
+	  --save-session="$images_dir/.aria_session" \
           --quiet \
           "${image_url_part%/}/$image_file_part"
 
@@ -338,19 +338,19 @@ if [ -n "$(find "$images_dir" -mindepth 1 -print -quit)" ]; then
       -iname "*.7z" \) -exec cksum {} \; > "$final_sum"
 
   if [ -f "$init_sum" ]; then
-	# Comparer les deux fichiers d'empreintes et récupérer les différences(nouvelles images téléchargées)
+    # Comparer les deux fichiers d'empreintes et récupérer les différences(nouvelles images téléchargées)
     mapfile -t diff_output < <(diff "$init_sum" "$final_sum" | grep "^>" | cut -d' ' -f4-)
     if [ -n "${diff_output[*]}" ]; then
-	  # Comparer chaque nouvelle image(check_sum_line) avec la liste des anciennes images(line)
+      # Comparer chaque nouvelle image(check_sum_line) avec la liste des anciennes images(line)
       for check_sum_line in "${diff_output[@]}"; do
         message_log "Mise à jour: $(basename "$check_sum_line")"
         new_file="$(echo "$check_sum_line" | tr -cd '[:alpha:]')" 
-		# Lire le fichier init_sum(ancienne sommme de contrôle) ligne par ligne et comparer avec les noms des nouvelles images
+	# Lire le fichier init_sum(ancienne sommme de contrôle) ligne par ligne et comparer avec les noms des nouvelles images
         while IFS= read -r line; do
           old_file="$(echo "$line" | tr -cd '[:alpha:]')"
-		  # Teste si les deux fichiers sont strictement différents
+	  # Teste si les deux fichiers sont strictement différents
           if [ "$check_sum_line" != "$line" ]; then
-			# Teste si les fichiers ont le même nom mais ont une version ancienne
+	    # Teste si les fichiers ont le même nom mais ont une version ancienne
             if [ "$new_file" = "$old_file" ]; then
               # Supprimer aussi le dossier si le fichier est dans un dossier
               chemin_dossier="$(dirname "$line")"
