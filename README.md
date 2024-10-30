@@ -1,7 +1,10 @@
 # Distro_images_sync
 
 Ce script permet de télécharger différentes distributions Linux/Unix ou autre image système automatiquement en tentant de façon générique d'avoir toujours la dernière version de l'image.
+
 Le script a été pensé pour être exécuté périodiquement via une tâche Cron ou une unité de service Systemd, ainsi nous pouvons avoir les dernières versions des principales images système Linux et autre en local.
+
+Le script ne fournit pas de système de vérification de l'intégrité et de l'authenticité de l'image téléchargée !
 
 Script non interactif, permettant:
 
@@ -101,5 +104,6 @@ Voici deux exemples utilisés dans ce script.
 Le fichier `.distro_images_sync.log` qui se trouve dans le dossier de téléchargement des images systèmes(/home/$USER/ImagesSys), permet de garder une vue d'ensemble sur l'activité du script(Erreurs et historique de téléchargements).
 
 ## Reste à faire
-
 - [ ] Permettre d'indiquer le nombre tolérable d'anciennes versions (par défaut chaque ancienne version est supprimée).
+- [ ] Fournir un système de vérification de l'intégrité/l'authenticité de chaque image téléchargée !
+
