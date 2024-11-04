@@ -43,6 +43,7 @@ Script non interactif, permettant:
 * Opnsense
 * Q4OS
 * Medicat
+* TrueNAS
 
 ## Types d'images systèmes compatibles
 
