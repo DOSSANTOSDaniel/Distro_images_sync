@@ -56,5 +56,25 @@ virtio_win_url="https://fedorapeople.org/groups/virt/virtio-win/direct-downloads
 # Iumkit
 iumkit_ver="$(curl -sL 'https://www.iumkit.net/portail/wp-content/uploads/downloads/dium/' | grep -oP '(?<=href=")Depannium-[0-9]+\.?[0-9]*-[0-9]*\.iso(?=">)' | sort -Vr | head -n 1)"
 iumkit_url="https://www.iumkit.net/portail/wp-content/uploads/downloads/dium/$iumkit_ver"
+
+# Snal Linux
+snal_ver="$(curl -sL -I -o /dev/null -w '%{url_effective}' 'https://sourceforge.net/projects/snallinux/files/latest/download')"
+snal_url="${snal_ver%%\?*}"
+
+# IPFire
+ipfire_ver="$(curl -sL 'https://www.ipfire.org/' | grep -oP 'Latest\s+Release:\s+IPFire\s+\K[0-9]+\.[0-9]+' | sort -Vr | head -n 1)"
+ipfire_ver1="$(curl -sL 'https://www.ipfire.org/' | grep -oP 'Core\s+Update\s+\K[0-9]+' | sort -Vr | sed -n 2p)"
+ipfire_url="https://downloads.ipfire.org/releases/ipfire-${ipfire_ver%%.*}.x/${ipfire_ver}-core${ipfire_ver1}/ipfire-${ipfire_ver}-core${ipfire_ver1}-x86_64.iso"
+
+# Fedora Silverblue
+fedora_ver="$(curl -sL https://torrent.fedoraproject.org/torrents/ | grep -oP 'href="\KFedora-Silverblue-ostree-x86_64-[0-9]+\.torrent' | sort -Vr | head -n 1)"
+fedora_url="https://torrent.fedoraproject.org/torrents/${fedora_ver}"
+
+# Secure-K OS
+fedora_url="$(curl -s https://api.github.com/repos/LumIT-Labs/open-securekos/releases/latest | grep "browser_download_url" | grep "open-securek-os-initial-image.iso" | cut -d '"' -f 4)"
+
+# Parrot
+parrot_ver="$(curl -sL https://deb.parrot.sh/parrot/iso/ | grep -oP 'href="\K([0-9]+\.){2}[0-9]+' | sort -Vr | head -n 1)"
+parrot_url="https://deb.parrot.sh/parrot/iso/${parrot_ver}/Parrot-security-${parrot_ver}_amd64.iso.torrent
 ```
 
