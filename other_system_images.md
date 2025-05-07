@@ -3,6 +3,10 @@
 ## Images au format ISO
 
 ```bash
+# Virtio-win
+virtio_ver="$(curl -sL https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/latest-virtio/ | grep -oP '(?<=href=")virtio-win-[0-9]+(\.?[0-9]*)*\.iso(?=">)' | sort -Vr | head -n 1)"
+virtio_url="https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/latest-virtio/$virtio_ver"
+
 # Manjaro XFCE
 manjaro_xfce_url="$(curl -sL https://manjaro.org/products/download/x86 | grep -oP '(?<=href=")http[s]?://download.manjaro.org/xfce/[0-9]+(\.?[0-9]*)*/manjaro-xfce-[0-9]+(\.?[0-9]*)*-[0-9]*-linux[0-9]*\.iso(?=" )' | sort -Vr | head -n 1)"
 
