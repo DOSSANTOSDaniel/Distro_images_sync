@@ -51,7 +51,7 @@ snal_url="${snal_ver%%\?*}"
 
 # MiniOS
 minios_git_api="https://api.github.com/repos/minios-linux/minios-live/releases/latest"
-minios_url="$(curl -s "$API_URL" | grep -oP '"browser_download_url":\s*"\K[^"]+/minios-bookworm-xfce-ultra-en-lkm-aufs-amd64-zstd-[0-9]+_[0-9]+.iso' | sort -Vr | head -n 1)"
+minios_url="$(curl -s "$minios_git_api" | grep -oP '"browser_download_url":\s*"\K[^"]+/minios-bookworm-xfce-ultra-en-lkm-aufs-amd64-zstd-[0-9]+_[0-9]+.iso' | sort -Vr | head -n 1)"
 
 # Virtio-win 
 virtio_win_ver="$(curl -sL https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/ | grep -oP '(?<=href=")virtio-win-[0-9]+(\.?[0-9]*)*-[0-9]+(?=/">)' | sort -Vr | head -n 1)"
